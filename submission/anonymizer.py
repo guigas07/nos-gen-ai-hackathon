@@ -102,3 +102,27 @@ def get_response_text(output: dict) -> str:
         raise RuntimeError(f"API Error Details: {output}")
     return output["candidates"][0]["content"]["parts"][0]["text"]
 
+
+def main():
+    if not API_KEY:
+        raise RuntimeError("API_KEY not found. Check your .env file.")
+
+    raw_text = drop_empty_lines(extract_text_from_pdf(pdf_path))
+    system_instructions = read_prompt_file(instructions_path)
+
+    full_prompt = (
+        system_instructions
+        + "\n\n<document>\n" + raw_text + "\n</document>"
+    )
+    print("Calling Gemini, this can take up to a minute...")
+    output = generate_content(full_prompt, 0.0)
+    masked_text = drop_empty_lines(strip_fences(get_response_text(output)))
+
+    print(masked_text)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(masked_text)
+
+
+
+if __name__ == "__main__":
+    main()

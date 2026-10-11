@@ -29,6 +29,7 @@ def extract_text_from_pdf(path: str) -> str:
 
 raw_text = extract_text_from_pdf(pdf_path)
 
+
 def drop_empty_lines(text: str) -> str:
     """The only layout change allowed by the brief: remove empty lines."""
     # 1. Break the text into a list of lines

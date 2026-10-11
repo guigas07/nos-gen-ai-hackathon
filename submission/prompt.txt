@@ -94,10 +94,10 @@ WHAT COUNTS AS SENSITIVE (mask it)
 - Contact details: phone numbers, email addresses, home address (every
   word of it: street name, number, apartment, neighbourhood, city, postal
   code).
--Weigth and heigth
 - Financial account identifiers: credit card number, CVV, card expiry
   date, insurance policy number, exact declared income/salary amounts.
-- Biometric / system identifiers: fingerprint ID, facial recognition ID.
+- Biometric / system identifiers: fingerprint ID, facial recognition ID,
+  weight and height measurements.
 - Professional license numbers (e.g. CRM).
 - An exact age stated right next to a person's name as a way of
   identifying that specific person (e.g. "Maria Santos, ... 47 anos",
@@ -123,14 +123,14 @@ WHAT IS NOT SENSITIVE (keep unchanged)
   reference number at the top of the report - these identify the
   document/institution, not a private individual, and must stay exactly
   as written.
-- Section headers and field labels .
+- Section headers and field labels.
 - Generic clinical/demographic content: common diagnoses, symptoms,
-  medications and dosages, vital signs (blood type, blood
-  pressure), lab/exam names, treatment timelines and durations ("há 5
-  anos", "desde 2018", "em 2022") when not tied to a rare/stigmatizing
-  condition, marital status, generic occupation title, habits, and
-  relationship descriptors in parentheses (e.g. "(irmão)", "(amiga
-  próxima)").
+  medications and dosages, vital signs (blood type, blood pressure), lab/
+  exam names, treatment timelines and durations (e.g. "há 5 anos", "em
+  2022") when NOT tied to a rare/stigmatizing condition (see the
+  stigmatizing-condition rule above for when a date IS sensitive),
+  marital status, generic occupation title, habits, and relationship
+  descriptors in parentheses (e.g. "(irmão)", "(amiga próxima)").
 - Titles such as "Dr.".
 
 If you are unsure whether a specific word identifies a private

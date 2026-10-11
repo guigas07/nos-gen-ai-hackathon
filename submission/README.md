@@ -70,7 +70,7 @@ pip install -r requirements.txt
 Criar um ficheiro `.env` na raiz do repositório (nunca o commitem):
 
 ```env
-GEMINI_API_KEY=a_vossa_chave_aqui
+API_KEY=a_vossa_chave_aqui
 ```
 
 ## Como correr

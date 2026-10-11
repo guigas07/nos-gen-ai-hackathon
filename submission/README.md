@@ -97,10 +97,3 @@ submission/
   submission.txt        # gerado — o documento anonimizado
   README.md
 ```
-
-## Equipa
-
-Guilherme Gomes e Martim Jaime — divisão de trabalho: extração/chamada ao Gemini e
-afinação do prompt de mascaramento, partilhados entre os dois ao longo
-de várias iterações (ver histórico de commits/merges no branch
-`team-Larp_Coders`).

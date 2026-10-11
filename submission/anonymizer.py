@@ -9,7 +9,7 @@ pdf_path = "raw_data/document_to_anonymize.pdf"
 instructions_path = "submission/prompt.txt"
 output_path = "submission/submission.txt"
 
-MODEL = "gemini-3.8-flash"  # change here if Google retires it again
+MODEL = "gemini-3.5-flash-lite"# change here if Google retires it again
 API_KEY = os.getenv("API_KEY")
 API_URL = (
     "https://generativelanguage.googleapis.com/v1beta/models/"

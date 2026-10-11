@@ -1,7 +1,7 @@
 # The *-Files — Anonymização de Documentos Médicos
 
 Equipa: Larp_Coders
-Membros: Guilherme Gomes
+Membros: Guilherme Gomes e Martim Jaime
 Desafio: NOS / UNTRACE — JunctionX Lisbon 2026
 
 ## O que faz
@@ -27,14 +27,10 @@ diferença é que cada palavra sensível é substituída por um `*`.
    permanecer visível.
 3. Chamada ao modelo: usamos a API do Gemini (`<nome do modelo>`,
    temperatura 0) para processar o documento.
-4. Mascaramento: com o prompt que o gemini recebe é feito a anonimização
+4. Mascaramento:  `generate_content` executa o prompt que o gemini recebe é feito a anonimização
     do documento, substituindo as informações sensíveis por *.
-5. Validação: `validate_output` faz uma verificação automática:
-   compara o número de palavras por linha entre o original e o
-   mascarado, confirma que as 4 linhas de cabeçalho conhecidas (título,
-   data, referência, "Informações do Paciente:") permanecem inalteradas,
-   e procura padrões de emails/telefones/NIFs que possam ter escapado
-   por engano.
+5. Processamento do output: `get_response_text`escreve o output do gemini no
+    ficheiro submissions.txt.
 
 ## Política de mascaramento
 
@@ -64,7 +60,7 @@ Pré-requisitos: Python 3.10+, uma chave de API do Gemini
 ([aistudio.google.com](https://aistudio.google.com/)).
 
 ```bash
-git clone https://github.com/<o-vosso-fork>/nos-gen-ai-hackathon.git
+git clone https://github.com/guigas07/nos-gen-ai-hackathon.git
 cd nos-gen-ai-hackathon
 python3 -m venv .venv
 source .venv/bin/activate 

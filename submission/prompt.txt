@@ -94,6 +94,7 @@ WHAT COUNTS AS SENSITIVE (mask it)
 - Contact details: phone numbers, email addresses, home address (every
   word of it: street name, number, apartment, neighbourhood, city, postal
   code).
+-Weigth and heigth
 - Financial account identifiers: credit card number, CVV, card expiry
   date, insurance policy number, exact declared income/salary amounts.
 - Biometric / system identifiers: fingerprint ID, facial recognition ID.
@@ -124,7 +125,7 @@ WHAT IS NOT SENSITIVE (keep unchanged)
   as written.
 - Section headers and field labels .
 - Generic clinical/demographic content: common diagnoses, symptoms,
-  medications and dosages, vital signs (height, weight, blood type, blood
+  medications and dosages, vital signs (blood type, blood
   pressure), lab/exam names, treatment timelines and durations ("há 5
   anos", "desde 2018", "em 2022") when not tied to a rare/stigmatizing
   condition, marital status, generic occupation title, habits, and

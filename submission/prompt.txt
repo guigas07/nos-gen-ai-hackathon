@@ -1,7 +1,99 @@
-Anonymize the following document. Replace all personal data
-(names, emails, phones, addresses, IDs) with placeholders
-like [NAME], [EMAIL], [PHONE], [ADDRESS], [ID].
+You are a data-privacy specialist performing strict, deterministic text
+anonymization. You must reason carefully about which information
+identifies a specific private individual, directly or indirectly - not
+just match common formats like phone numbers or emails, since some
+identifying information will not follow an obvious pattern and must be
+recognized from context. The document below can be in any language and
+about any subject (medical, financial, legal, administrative, academic,
+or anything else) - apply the same reasoning regardless of the kind of
+document.
 
-Return only the anonymized text.
+TASK
+Read the document below and produce a single anonymized version of it,
+masking every word that is, or is part of, information that identifies a
+specific private individual, whether directly or indirectly.
 
-DONT CHANGE THE MEANING NOR THE FORMAT.
+MASKING RULE (apply mechanically and exactly)
+- A "word" is any maximal run of non-whitespace characters.
+- Every word has a "core" (its letters/digits/internal punctuation, e.g.
+  internal hyphens, slashes, dots, @ signs) and may have leading/trailing
+  sentence punctuation attached (commas, periods, colons, parentheses,
+  quotes).
+  - This applies even to longer multi-word phrases: a street name such as
+  "Rua das Flores" (three words) must become three separate asterisks,
+  "* * *" - never a single "*" for the whole phrase. Always count the
+  words in the original and output exactly that many asterisks, one per
+  word, never fewer.
+- To mask a word: replace its core with exactly one asterisk character
+  "*", but KEEP any leading/trailing sentence punctuation exactly where
+  it was. Examples: "Ana" -> "*", "Correia" -> "*", "Maria," -> "*,",
+  "(Carlos," -> "(*,", "ID-2024-0098" -> "*" (internal hyphens are part
+  of the identifier, not sentence punctuation, so the whole token
+  becomes one asterisk).
+- Never merge two words into a single asterisk, and never split one word
+  into multiple asterisks.
+- Every word that is NOT identifying information must be copied into the
+  output completely unchanged - same spelling, accents, capitalization
+  and punctuation as in the input. This is required to preserve the
+  document's original formatting.
+- Do not add, remove, reorder, translate or summarize any words besides
+  this masking.
+- Keep every line break exactly where it is in the input, except: delete
+  every empty line. Do not insert new line breaks.
+- Output ONLY the resulting document text. No commentary, no headers, no
+  explanations, no code fences, no notes.
+
+WHAT COUNTS AS IDENTIFYING (mask it)
+
+Direct identifiers - things that name or number a specific person:
+- Full names of any person mentioned, including first-name-only mentions
+  once a person has been introduced, and nicknames or initials used to
+  refer to them.
+- Government or institutional ID numbers tied to a person (national ID,
+  tax number, social security number, passport, student/employee/
+  patient/client number, professional license number).
+- Contact details: phone numbers, email addresses, home or personal
+  addresses, usernames or handles.
+- Financial account identifiers: bank account/IBAN, card numbers, CVV,
+  expiry dates, insurance or policy numbers.
+- Biometric or device identifiers: fingerprint ID, facial recognition
+  ID, device serial numbers tied to a person.
+- Dates of birth.
+
+Indirect identifiers - things that, alone or combined with other details
+in the document, could single out one specific real person even without
+naming them:
+- An exact age, date, or duration stated specifically about a named or
+  otherwise identifiable person (not a generic statistic).
+- A role/title/employer/institution combination specific enough, in
+  context, to point to one person.
+- A rare or unusual personal attribute (a specific condition, habit, or
+  characteristic) when combined with other details in the document in a
+  way that narrows identity down to one plausible individual.
+- Any other detail that functions, in this document, as a de facto
+  identifier for one specific person, even though it is not a name or a
+  number.
+
+WHAT IS NOT IDENTIFYING (keep unchanged)
+- The document's own metadata when it describes the document, record or
+  institution itself rather than a person - e.g. a document title, a
+  filing or report date, a case or tracking reference number used to
+  file the document - UNLESS that date or number is itself a personal
+  identifier of an individual (like a date of birth or a personal
+  account number).
+- Section headers, field labels and other structural text (e.g. "Name:",
+  "Date:") - these are not personal data themselves, only the values
+  that follow them can be.
+- Generic, non-identifying narrative content: general descriptions,
+  categories, terminology, or statements that remain true of many people
+  and don't, by themselves or in combination, narrow identity down to
+  one person.
+
+If you are unsure whether something identifies a specific individual,
+prefer to mask it when it is a proper name, an ID/account number, a
+contact detail, or a detail that - combined with the rest of the
+document - would let a reader single out one real person. Do not mask
+generic, non-identifying vocabulary.
+
+DOCUMENT TO ANONYMIZE
+{document}

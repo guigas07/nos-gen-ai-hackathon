@@ -9,7 +9,7 @@ pdf_path = "raw_data/document_to_anonymize.pdf"
 instructions_path = "submission/prompt.txt"
 output_path = "submission/submission.txt"
 
-MODEL = "gemini-3.8-flash"  # change here if Google retires it again
+MODEL = "gemini-3.5-flash-lite"# change here if Google retires it again
 API_KEY = os.getenv("API_KEY")
 API_URL = (
     "https://generativelanguage.googleapis.com/v1beta/models/"
@@ -28,6 +28,7 @@ def extract_text_from_pdf(path: str) -> str:
     return text
 
 raw_text = extract_text_from_pdf(pdf_path)
+
 
 
 def drop_empty_lines(text: str) -> str:
@@ -112,6 +113,7 @@ def main():
         system_instructions
         + "\n\n<document>\n" + raw_text + "\n</document>"
     )
+
     output = generate_content(full_prompt, 0.0)
     masked_text = drop_empty_lines(strip_fences(get_response_text(output)))
 
